@@ -2,8 +2,8 @@
 
 This repository provides the official model coefficients and an optimized R pipeline to calculate DNA methylation age (DNAm age) and Age Acceleration using the **SunClock** and **SunClock-CP** epigenetic clocks. 
 
-- **SunClock**: Developed using Whole-Genome Bisulfite Sequencing (WGBS) data, featuring single-nucleotide resolution.
-- **SunClock-CP**: Tailored for traditional methylation microarrays (Illumina 450K/EPICv1/EPICv2/MSA), fully compatible with standard `cg` probe nomenclature.
+- **SunClock**: Developed using Whole-Genome Bisulfite Sequencing (WGBS) data.
+- **SunClock-CP**: Tailored for traditional methylation microarrays (Illumina 450K/EPICv1/EPICv2/MSA), using standard `cg` probe names.
 
 ---
 
