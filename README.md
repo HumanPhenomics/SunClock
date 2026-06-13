@@ -2,8 +2,8 @@
 
 This repository provides the official model coefficients and an optimized R pipeline to calculate DNA methylation age (DNAm age) and Age Acceleration using the **SunClock** and **SunClock-CP** epigenetic clocks. 
 
-- **SunClock**: Developed using Whole-Genome Bisulfite Sequencing (WGBS) data.
-- **SunClock-CP**: Tailored for traditional methylation microarrays (Illumina 450K/EPICv1/EPICv2/MSA), using standard `cg` probe names.
+- **SunClock**: Developed using Whole-Genome Bisulfite Sequencing (WGBS) data, featuring single-nucleotide resolution.
+- **SunClock-CP**: Tailored for traditional methylation microarrays (e.g., Illumina 450K/EPIC), fully compatible with standard `cg` probe nomenclature.
 
 ---
 
@@ -23,6 +23,9 @@ A numeric matrix or data frame of DNA methylation beta values (ranging from 0 to
 - **Columns**: CpG site identifiers. 
   - For `model_type = "WGBS"`, column names must match genomic coordinates (e.g., `chr12:21771411:21771412`).
   - For `model_type = "array"`, column names must match Illumina probe IDs (e.g., `cg00034076`).
+
+> 🧬 **Genome Assembly Note (WGBS)**
+> In `SunClock_coef.csv`, the default genomic coordinates in the `CpG_pos` column are based on the **hg38** reference genome. If your dataset is aligned to **hg19**, please use the provided `hg19` option. *(Note: A minimal number of sites failed the liftOver conversion to hg19 and are marked as `NA`.)*
 
 ### 2. Phenotype Metadata (`pheno_df`)
 *(Optional, only required if computing Age Acceleration)*
