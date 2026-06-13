@@ -147,23 +147,23 @@ predict_epigenetic_age <- function(beta_matrix, model_type = c("array", "WGBS"),
 # 3. CSV files: Keep "SunClock-CP_coef.csv" or "SunClock_coef.csv" in your working directory, or specific coef_dir
 
 # --- Example 1: Basic DNAm Age Prediction (Default Array model, SunClock-CP) ---
-final_output <- predict_epigenetic_age(beta_matrix = my_betas, model_type = "array")
+# final_output <- predict_epigenetic_age(beta_matrix = my_betas, model_type = "array")
 
 # --- Example 2: WGBS Prediction using hg19 Coordinates (SunClock hg19) ---
-final_output <- predict_epigenetic_age(
-  beta_matrix    = my_betas,
-  model_type     = "WGBS",
-  genome_version = "hg19"
-)
+# final_output <- predict_epigenetic_age(
+#   beta_matrix    = my_betas,
+#   model_type     = "WGBS",
+#   genome_version = "hg19"
+# )
 
 # --- Example 3: Full Pipeline (Calculate WGBS hg38 Age + Age Acceleration + Keep metadata) ---
-final_output <- predict_epigenetic_age(
-  beta_matrix    = my_betas,
-  model_type     = "WGBS",
-  genome_version = "hg38",
-  coef_dir       = ".",
-  compute_accel  = TRUE,
-  pheno_df       = my_pheno
-)
-
-head(final_output)
+# final_output <- predict_epigenetic_age(
+#   beta_matrix    = my_betas,
+#   model_type     = "WGBS",
+#   genome_version = "hg38",
+#   coef_dir       = ".",
+#   compute_accel  = TRUE,
+#   pheno_df       = my_pheno
+# )
+# 
+# head(final_output)
