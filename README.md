@@ -41,30 +41,34 @@ A data frame where sample names are provided as a standard column instead of row
 
 ## Quick Start & Usage
 
-Ensure that `predict_epigenetic_age.R` and the coefficient CSV files are placed in your working directory, then execute the following implementation in R:
+Ensure that `SunClock_script.R` and the coefficient CSV files are placed in your working directory, then execute the following implementation in R:
 
 ```R
 # Source the pipeline function
-source("predict_epigenetic_age.R")
+source("SunClock_script.R")
 
-# Load your cohort data (replace with your actual data objects)
-# my_betas <- as.matrix(your_imputed_beta_data)
-# my_pheno <- your_phenotype_dataframe
+# Required Inputs Format:
+# 1. my_betas : Matrix/DataFrame where RowNames = Sample IDs, ColNames = CpG IDs (cg... or chr...)
+# 2. my_pheno : DataFrame containing columns "Sample_ID" and "Age" (plus any optional clinical columns)
+# 3. CSV files: Keep "SunClock-CP_coef.csv" or "SunClock_coef.csv" in your working directory, or specific coef_dir
+# --- Example 1: Basic DNAm Age Prediction (Default Array model, SunClock-CP) ---
+final_output <- predict_epigenetic_age(beta_matrix = my_betas, model_type = "array")
 
-# --- Scenario A: Basic DNAm Age Prediction (Default Array Model) ---
-output_basic <- predict_epigenetic_age(
-  beta_matrix = my_betas, 
-  model_type  = "array"
+# --- Example 2: WGBS Prediction using hg19 Coordinates (SunClock hg19) ---
+final_output <- predict_epigenetic_age(
+  beta_matrix    = my_betas,
+  model_type     = "WGBS",
+  genome_version = "hg19"
 )
 
-# --- Scenario B: Full Pipeline (DNAm Age + Age Acceleration + Metadata Preservation) ---
-output_full <- predict_epigenetic_age(
-  beta_matrix   = my_betas, 
-  model_type    = "array",      # Use "array" for SunClock-CP or "WGBS" for SunClock
-  coef_dir      = ".",          # Directory path where coefficient CSVs are located
-  compute_accel = TRUE,         # Enable regression residual-based age acceleration
-  pheno_df      = my_pheno      # Phenotype metadata containing 'Sample_ID' and 'Age'
+# --- Example 3: Full Pipeline (Calculate WGBS hg38 Age + Age Acceleration + Keep metadata) ---
+final_output <- predict_epigenetic_age(
+  beta_matrix    = my_betas,
+  model_type     = "WGBS",
+  genome_version = "hg38",
+  coef_dir       = ".",
+  compute_accel  = TRUE,
+  pheno_df       = my_pheno
 )
 
-# Preview the standardized results table
-head(output_full)
+head(final_output)
