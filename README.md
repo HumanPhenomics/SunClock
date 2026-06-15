@@ -2,8 +2,8 @@
 
 This repository provides the official model coefficients and an optimized R pipeline to calculate DNA methylation age (DNAm age) and Age Acceleration using the **SunClock** and **SunClock-CP** epigenetic clocks. 
 
-- **SunClock**: Developed using Whole-Genome Bisulfite Sequencing (WGBS) data, featuring single-nucleotide resolution.
-- **SunClock-CP**: Tailored for traditional methylation microarrays (e.g., Illumina 450K/EPIC), fully compatible with standard `cg` probe nomenclature.
+- **SunClock**: Developed using Whole-Genome Bisulfite Sequencing (WGBS) data.
+- **SunClock-CP**: Tailored for traditional methylation microarrays (Illumina 450K/EPICv1/EPICv2/MSA), fully compatible with standard `cg` probe nomenclature.
 
 ---
 
@@ -11,7 +11,7 @@ This repository provides the official model coefficients and an optimized R pipe
 
 - `SunClock_coef.csv`: Coefficient table for the WGBS model.
 - `SunClock-CP_coef.csv`: Coefficient table for the Array model.
-- `predict_epigenetic_age.R`: Main source script containing the core pipeline function.
+- `SunClock_script.R`: Main source script containing the core pipeline function.
 
 ---
 
@@ -25,7 +25,7 @@ A numeric matrix or data frame of DNA methylation beta values (ranging from 0 to
   - For `model_type = "array"`, column names must match Illumina probe IDs (e.g., `cg00034076`).
 
 > 🧬 **Genome Assembly Note (WGBS)**
-> In `SunClock_coef.csv`, the default genomic coordinates in the `CpG_pos` column are based on the **hg38** reference genome. If your dataset is aligned to **hg19**, please use the provided `hg19` option. *(Note: A minimal number of sites failed the liftOver conversion to hg19 and are marked as `NA`.)*
+> In `SunClock_coef.csv`, the default genomic coordinates in the `CpG_pos` column are based on the **hg38** reference genome. If your dataset is aligned to **hg19**, please use the provided `genome_version = "hg19"` option. *(Note: A minimal number of clock CpGs failed the liftOver conversion to hg19 and are marked as `NA`.)*
 
 ### 2. Phenotype Metadata (`pheno_df`)
 *(Optional, only required if computing Age Acceleration)*
