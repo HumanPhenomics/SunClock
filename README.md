@@ -80,13 +80,11 @@ The core function `predict_epigenetic_age()` accepts the following parameters:
 | **Parameter** | **Type** | **Required/Optional** | **Description** |
 | --- | --- | --- | --- |
 | `beta_matrix` | Numeric matrix/data.frame | **Required** | DNA methylation beta values (0-1). **Rows** = samples, **Columns** = CpG probes. Row names must be sample IDs. |
-| `model_type` | Character | Optional (default: `"array"`) | Clock model to use:
-• `"array"` - SunClock-CP (Illumina 450K/EPICv1/EPICv2/MSA)
-• `"WGBS"` - SunClock (whole-genome bisulfite sequencing) |
+| `model_type` | Character | Optional (default: `"array"`) | Clock model to use: •  `"array"` •  `"WGBS"` |
 | `genome_version` | Character | Optional (default: `"hg38"`) | Genome build for WGBS model only. Options: `"hg38"` or `"hg19"`. Ignored for array model. |
 | `coef_dir` | Character | Optional (default: `"."`) | Directory path containing coefficient CSV files (`SunClock_coef.csv` or `SunClock-CP_coef.csv`). |
 | `compute_accel` | Logical | Optional (default: `FALSE`) | If `TRUE`, calculates age acceleration (residual from regressing DNAm age on chronological age). |
-| `pheno_df` | Data.frame | **Required if `compute_accel = TRUE`** | Sample metadata. Must contain columns:• `Sample_ID` - matches `rownames(beta_matrix)`• `Age` - chronological age in years*Additional columns are preserved in output.* |
+| `pheno_df` | Data.frame | **Required if `compute_accel = TRUE`** | Sample metadata. Must contain columns: • `Sample_ID` - matches `rownames(beta_matrix)` • `Age` - chronological age in years*Additional columns are preserved in output.* |
 
 **Example 1: Basic DNAm Age Prediction (Array model, SunClock-CP)**
 
